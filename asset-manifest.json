@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-karriervalto-1-0-revision/static/css/main.2d9455f9.css",
+    "main.js": "/react-karriervalto-1-0-revision/static/js/main.22313a13.js",
+    "static/js/787.8d5753d3.chunk.js": "/react-karriervalto-1-0-revision/static/js/787.8d5753d3.chunk.js",
+    "index.html": "/react-karriervalto-1-0-revision/index.html",
+    "main.2d9455f9.css.map": "/react-karriervalto-1-0-revision/static/css/main.2d9455f9.css.map",
+    "main.22313a13.js.map": "/react-karriervalto-1-0-revision/static/js/main.22313a13.js.map",
+    "787.8d5753d3.chunk.js.map": "/react-karriervalto-1-0-revision/static/js/787.8d5753d3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d9455f9.css",
+    "static/js/main.22313a13.js"
+  ]
+}
