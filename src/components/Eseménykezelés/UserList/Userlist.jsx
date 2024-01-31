@@ -23,7 +23,7 @@ export default class Userlist extends Component {
   insertElement = (userData) => {
     const newUser = {
       name: `${userData.name.title} ${userData.name.first} ${userData.name.last}` ,
-      adress: `${userData.location.street.name} ${userData.location.street.number}`, 
+      address: `${userData.location.street.name} ${userData.location.street.number}`, 
       email: `${userData.email}`, 
       key: `${userData.login.uuid}`
     };
@@ -62,7 +62,7 @@ export default class Userlist extends Component {
   render() {    
     const userItems = this.state.users.map(
       user => <UserItem name={user.name}
-      adress={user.adress}
+      address={user.address}
       email={user.email}
       key={user.key}
       id={user.key}
@@ -74,7 +74,8 @@ export default class Userlist extends Component {
         {userItems}
       </ul>
       <button onClick={this.handleInsert}>Beszúr</button>
-      <button onClick={this.handleDelete}>Töröl</button>      
+      <button onClick={this.handleDelete}>Töröl</button>  
+      UserList {this.state.users.length}    
       </>
     )
   }

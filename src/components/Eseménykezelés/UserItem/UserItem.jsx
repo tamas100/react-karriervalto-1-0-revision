@@ -8,7 +8,7 @@ export default class UserItem extends Component {
   render() {
     return (
       <li>
-        {this.props.name} ({this.props.email}): {this.props.adress}
+        {this.props.name} ({this.props.email}): {this.props.address}
         <button onClick={this.handleClick}>Törlés</button>
       </li>
     )
