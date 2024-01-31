@@ -1,0 +1,8 @@
+.event-sandbox {
+  width: 500px;
+  height: 200px;
+  background-color: lightblue;
+  border: 5px darkblue dashed;
+  font-size: 24px;
+  margin: 50px auto;
+}

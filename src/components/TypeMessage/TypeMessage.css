@@ -1,0 +1,13 @@
+.type-message {
+  font-size: 10px;
+  line-height: 30px;
+  border: 2px dashed rgb(199, 63, 63);
+  box-shadow: 10px 6px 20px rgba(0, 0, 0, 0.6);
+  width: 100px;
+  height: 30px;
+  margin: 10px auto;
+  background-color: rgb(78, 194, 130);
+  border-radius: 50%;
+  color: rgb(205, 18, 230);
+  font-weight: bold;
+}
