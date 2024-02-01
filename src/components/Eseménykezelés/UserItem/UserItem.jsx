@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class UserItem extends Component {
-  handleClick = (e) => {
+export default function UserItem(props) {
+  const handleClick = (e) => {
     e.preventDefault();
-    this.props.handleClick(this.props.id);
+    props.handleClick(props.id);
   };
-  render() {
-    return (
-      <li>
-        {this.props.name} ({this.props.email}): {this.props.address}
-        <button onClick={this.handleClick}>Törlés</button>
-      </li>
-    )
-  }
+  
+  return (
+    <li>
+      {props.name} ({props.email}): {props.address}
+      <button onClick={handleClick}>Törlés</button>
+    </li>
+  )  
 }

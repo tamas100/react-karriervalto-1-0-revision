@@ -1,22 +1,17 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 import './Eseménykezelés.css'
 
-export default class Eseménykezelés extends Component {
+export default function Eseménykezelés(props) {
+    const [klikkekSzáma, setKlikkekSzáma] = useState(0);
+  
+    const handleClick = () => {        
+        setKlikkekSzáma(régiKlikkek => régiKlikkek + 1);        
+    }
     
-    state = {
-        klikkekSzáma: 0
-    }
-
-    handleClick = () => {
-        console.log('handleClick');
-        this.setState({ klikkekSzáma: this.state.klikkekSzáma + 1 });
-    }
-
-    render() {
-        return (
-        <div className='event-sandbox' onClick={this.handleClick}>
-            {this.props.szöveg} {this.state.klikkekSzáma}
+    return (
+        <div className='event-sandbox' onClick={handleClick}>
+            {props.szöveg} {klikkekSzáma}
         </div>
     )
-  }
+  
 }

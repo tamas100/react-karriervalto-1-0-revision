@@ -1,31 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './SzövegInput.css';
 
-export default class SzövegInput extends Component {
+export default function Szöveginput(props) {
+  const handleChange = (e) => {
+    props.handleTitleUpdate(e.target.value);
+  }
 
-    handleChange = (e) => {
-        this.props.handleTitleUpdate(e.target.value);
-    }
-    
-    handleSubmit= (e) => {
-        e.preventDefault();
-    }
+  const handleSubmit= (e) => {
+      e.preventDefault();
+  }
 
-  render() {
-
-    return (
+  return (
     <>
         <form action="#"
               method='GET' 
               className='szöveg-input-form' 
-              onSubmit={this.handleSubmit}>            
+              onSubmit={handleSubmit}>            
             <input type="text"
                 name="input-kulcs"
                 className='szöveg-input'
-                value={this.props.inputValue}
-                onChange={this.handleChange} />
+                value={props.inputValue}
+                onChange={handleChange} />
         </form>
       </>
-    )
-  }
+  )
 }
+
+

@@ -1,14 +1,26 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import UserItem from '../UserItem/UserItem';
 import axios from 'axios';
 
-export default class Userlist extends Component {
+export default function Userlist() {
+  const [users, setUsers] = useState([]);  
 
-  state = {
-        users: []
-  }
-
-  componentDidMount() {
+  useEffect(() => {
+      // mellékhatás
+      if ( users.length === 0) {           
+        axios
+          .get('https://randomuser.me/api/?results=3&nat=DE')
+          .then(resp => {
+            const users = resp.data.results;
+            for (let user of users) {
+              insertElement(user);
+            }
+            console.log(users);
+            });   
+      }
+  });
+  
+  function componentDidMount() {
     axios
       .get('https://randomuser.me/api/?results=3&nat=DE')
       .then(resp => {
@@ -20,63 +32,59 @@ export default class Userlist extends Component {
       });   
   }
 
-  insertElement = (userData) => {
+  const insertElement = (userData) => {
     const newUser = {
       name: `${userData.name.title} ${userData.name.first} ${userData.name.last}` ,
       address: `${userData.location.street.name} ${userData.location.street.number}`, 
       email: `${userData.email}`, 
       key: `${userData.login.uuid}`
     };
-   
-    this.setState((state) => {
-      return {users: [...state.users, newUser]}
-    });
+
+    setUsers(oldUsers => [...oldUsers, newUser])
   }
   
-  deleteElement = (key) => {
-    const newUserList = this.state.users.filter(user => user.key !== key);
-    this.setState({
-      users: newUserList
-    });
+  const deleteElement = (key) => {
+    setUsers(oldUserList => oldUserList.filter(user => user.key !== key));    
   }
 
-  handleInsert = () => {
+  const handleInsert = () => {
     axios
       .get('https://randomuser.me/api/?results=3&nat=DE')
       .then(resp => {
         const users = resp.data.results        
-        this.insertElement(users[0]);        
+        insertElement(users[0]);        
         console.log(users);
       });
   }
 
-  handleDelete = () => {
-    const len = this.state.users.length; 
-    if (len > 0) {
+  const handleDelete = () => {
+    const len = users.length; 
+    if (len > 1) {
       const randomIndex = Math.trunc(Math.random() * len);
-      const key = this.state.users[randomIndex].key
-      this.deleteElement(key);
+      const key = users[randomIndex].key
+      deleteElement(key);
     }
   }
 
-  render() {    
-    const userItems = this.state.users.map(
-      user => <UserItem name={user.name}
-      address={user.address}
-      email={user.email}
-      key={user.key}
-      id={user.key}
-      handleClick={this.deleteElement} />
-    );
-    return (
-      <>
-      <ul>
-        {userItems}
-      </ul>
-      <button onClick={this.handleInsert}>Beszúr</button>
-      <button onClick={this.handleDelete}>Töröl</button>  
-      UserList {this.state.users.length}    
-      </>
-    )
-  }
+     
+  const userItems = users.map(
+    user => <UserItem name={user.name}
+                      address={user.address}
+                      email={user.email}
+                      key={user.key}
+                      id={user.key}
+                      handleClick={deleteElement} />
+  );
+
+  return (
+    <>
+    <ul>
+      {userItems}
+    </ul>
+    <button onClick={handleInsert}>Beszúr</button>
+    <button onClick={handleDelete}>Töröl</button>  
+    UserList {users.length}    
+    </>
+  )
+  
 }

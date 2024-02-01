@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import HelloMessage from './components/HelloMessage/HelloMessage';
 import TypeMessage from './components/TypeMessage/TypeMessage';
@@ -22,53 +22,45 @@ const record = {
 function callback(e) {
   e.preventDefault();
 }
-class App extends Component {
+export default function App() {
+  const [title, setTitle] = useState("Főcím");
 
-  state = {
-    title: "Főcím",
-  }
+  return (
+    <div className="App">
+      <h2 className='szöveg-h2'>{title}</h2>
+      <SzövegInput handleTitleUpdate={setTitle} inputValue={title} />
+      <Eseménykezelés szöveg={title} />
+      <Userlist />
+      <FlashCards />
+      <App2 />
+      <HelloMessageH2 message='“Hello, React!”' />
+      <TextSection title="React" text="Paragraph text" />
+      <User name="WallStreet Joe" email="troll@revenge-trading.com" />
+      <Osszeg num1={8} num2={15} />
+      <Osszeg num1={8} num2="text" />
+      <TicTacToe />
+      <HelloMessage name="Bill" />
+      <HelloMessage name="Monica" />
+      <HelloMessage name="Donald" />
+      <HelloMessage name="Joe" />
+      <TypeMessage val="Ez egy szöveg" />
+      <TypeMessage val={5} />
+      <TypeMessage val={5n} />
+      <TypeMessage val={5 > 3} />
+      <TypeMessage val={Symbol()} />
+      <TypeMessage val={undefined} />
+      <TypeMessage val={[1, 2, 3]} />
+      <TypeMessage val={{ backgroundColor: "red", color: "black" }} />
+      <TypeMessage val={record} />
+      <TypeMessage val={callback} />
+      <TypeMessage
+        val={(e) => {
+          e.preventDefault();
+        }}
+      />
+      <ConditionalRender left={5} right={2} />
+    </div>
+  );
 
-  handleTitleUpdate = (newValue) => {
-    this.setState({ title: newValue });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <h2 className='szöveg-h2'>{this.state.title}</h2>
-        <SzövegInput handleTitleUpdate={this.handleTitleUpdate} inputValue={this.state.title} />
-        <Eseménykezelés szöveg={this.state.title} />
-        <Userlist />
-        <FlashCards />
-        <App2 />
-        <HelloMessageH2 message='“Hello, React!”' />
-        <TextSection title="React" text="Paragraph text" />
-        <User name="WallStreet Joe" email="troll@revenge-trading.com" />
-        <Osszeg num1={8} num2={15} />
-        <Osszeg num1={8} num2="text" />
-        <TicTacToe />
-        <HelloMessage name="Bill" />
-        <HelloMessage name="Monica" />
-        <HelloMessage name="Donald" />
-        <HelloMessage name="Joe" />
-        <TypeMessage val="Ez egy szöveg" />
-        <TypeMessage val={5} />
-        <TypeMessage val={5n} />
-        <TypeMessage val={5 > 3} />
-        <TypeMessage val={Symbol()} />
-        <TypeMessage val={undefined} />
-        <TypeMessage val={[1, 2, 3]} />
-        <TypeMessage val={{ backgroundColor: "red", color: "black" }} />
-        <TypeMessage val={record} />
-        <TypeMessage val={callback} />
-        <TypeMessage
-          val={(e) => {
-            e.preventDefault();
-          }}
-        />
-        <ConditionalRender left={5} right={2} />
-      </div>
-    );
-  }
 }
-export default App;
+
